@@ -6,3 +6,6 @@ This is only a proof of concept build.
 
 It could be written better but this was done at 2am because bordem had struck.
 
+
+
+upload index.js to a vps
