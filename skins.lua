@@ -21,7 +21,7 @@ local bit_band              = bit.band
 
 local weapondata = {}
 
-local DEFAULT_URL = "" --Enter Websocket serverip here
+local DEFAULT_URL = "" --Enter Websocket serverip here {ws://ip:port}
 local websocket_connection
 
 local function update_skin()
