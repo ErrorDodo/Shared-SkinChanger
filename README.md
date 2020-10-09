@@ -11,6 +11,6 @@ It could be written better but this was done at 2am because bordem had struck.
 upload index.js to a vps
 
 
-###Required luas/libraries:
--https://gamesense.pub/forums/viewtopic.php?id=23653
--https://gamesense.pub/forums/viewtopic.php?id=23490
+### Required luas/libraries:
+- https://gamesense.pub/forums/viewtopic.php?id=23653
+- https://gamesense.pub/forums/viewtopic.php?id=23490
