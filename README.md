@@ -8,11 +8,23 @@ It could be written better but this was done at 2am because bordem had struck.
 
 
 
-upload index.js to a vps
+You need to download node js on your vps (I use debian because I am good with linux)
 
-and npm i ws && npm i sqlite3
+You can follow this tutorial https://www.digitalocean.com/community/ … -debian-10
 
-to be able to use the index.js
+Or just run these commands
+
+sudo apt update
+
+sudo apt install nodejs npm
+
+Then download the index.js fileand upload to vps then run these commands in the same folder as you put the index.js
+
+npm i ws && npm i sqlite3
+
+and that should make the websocket work
+
+in the lua format the websocket ip like this ws://192.168.0.1:8080 so the format would be ws://ip:port
 
 
 ### Required luas/libraries:
