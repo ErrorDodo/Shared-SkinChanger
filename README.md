@@ -10,7 +10,7 @@ It could be written better but this was done at 2am because bordem had struck.
 
 You need to download node js on your vps (I use debian because I am good with linux)
 
-You can follow this tutorial https://www.digitalocean.com/community/ … -debian-10
+You can follow this tutorial https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-debian-10
 
 Or just run these commands
 
