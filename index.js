@@ -59,7 +59,6 @@ ws.on('connection', function connection(socket) {
             if(!socket_map.has(socket)) {
                 console.log("socket is not in map... adding it");
                 socket_map.set(socket, { steamid: jsondata.steamid });
-                console.log(socket_map.size);
             }
 
             if(EItemDefinitionIndex.has(jsondata.m_iItemDefinitionIndex)) {
