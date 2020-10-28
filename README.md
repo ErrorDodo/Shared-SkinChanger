@@ -34,6 +34,7 @@ in the lua format the websocket ip like this ws://127.0.0.1:8080 so the format w
 - Constantly updates skins, could cause issues on local matches
 - Still no knife skin changer
 - Hud can get messed up on death (Fixes when respawned)
+- If loaded while dead you will not receive updates
 
 
 Project is going to be halted. Due to no sub and lua is a yuck language
