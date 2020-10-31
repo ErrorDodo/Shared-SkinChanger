@@ -183,18 +183,18 @@ local function forceupdate(weapon_ptr)
     local post_data_update = ffi_cast("PostDataUpdate_t", network_vtable[0][7])
 
     --C_WeaponCSBase->m_CustomMaterials
-    local base_m_CustomMaterials = ffi_cast("struct CUtlVector*", weapon_ptr + m_CustomMaterials)[0]
+    local base_m_CustomMaterials = ffi_cast("struct C_Utl_Vector_s*", weapon_ptr + m_CustomMaterials)[0]
     base_m_CustomMaterials.m_Size = 0
 
     --C_WeaponCSBase->m_bCustomMaterialInitialized
     ffi_cast("bool*", weapon_ptr + m_bCustomMaterialInitialized)[0] = ffi_cast("int*", weapon_ptr + 0x31C8)[0] <= 0
     
     --C_EconItemView->m_CustomMaterials
-    local item_m_CustomMaterials = ffi_cast("struct CUtlVector*", weapon_ptr + 0x2D80 + 0x40 + 0x14)[0]
+    local item_m_CustomMaterials = ffi_cast("struct C_Utl_Vector_s*", weapon_ptr + 0x2D80 + 0x40 + 0x14)[0]
     item_m_CustomMaterials.m_Size = 0
 
     --C_EconItemView->m_VisualsDataProcessors
-    local item_m_VisualsDataProcessors = ffi_cast("struct CUtlVector*",  ffi_cast("struct CUtlVector*", weapon_ptr + 0x2D80 + 0x40 + 0x230)[0])
+    local item_m_VisualsDataProcessors = ffi_cast("struct C_Utl_Vector_s*",  ffi_cast("struct C_Utl_Vector_s*", weapon_ptr + 0x2D80 + 0x40 + 0x230)[0])
 
     if item_m_VisualsDataProcessors.m_Size ~= 0 then
         local m_Size = item_m_VisualsDataProcessors.m_Size - 1
