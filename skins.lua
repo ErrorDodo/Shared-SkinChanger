@@ -42,7 +42,7 @@ ffi.cdef([[
         volatile long refCount;
     };
 
-	struct CUtlVector { 
+	struct C_Utl_Vector_s { 
 		struct IRefCounted**    m_pMemory;
 		int32_t                 m_nAllocationCount;
         int32_t                 m_nGrowSize;
