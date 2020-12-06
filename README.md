@@ -19,6 +19,8 @@ Then download the index.js file and upload to vps then run these commands in the
 
 npm i ws && npm i ajv
 
+node index.js || To turn on the websocket
+
 and that should make the websocket work
 
 in the lua format the websocket ip like this ws://127.0.0.1:8080 so the format would be ws://ip:port
