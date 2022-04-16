@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+      "target": "ES2019",
+      "module": "esnext",
+      "moduleResolution": "node",
+      "skipLibCheck": true,
+      "resolveJsonModule": true,
+      "esModuleInterop": true,
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+      "allowSyntheticDefaultImports": true,
+      "declaration": false,
+      "outDir": "dist",
+      "strict": true,
+      "incremental": true,
+      "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src/**/server/*.ts"],
+  "exclude": ["node_modules", "**/*.spec.ts"]
+}
