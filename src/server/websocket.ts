@@ -1,5 +1,6 @@
 import WebSocket, { WebSocketServer } from 'ws'
 import Ajv from 'ajv';
+import { GetLocation, IReturnData } from './server_location.js';
 
 let socket_map = new Map();
 
@@ -54,7 +55,9 @@ const weapon_validation = ajv.compile(weapon_schema);
 export function StartWebServer() {
     const ws = new WebSocketServer({ port: 8080 });
     ws.on('connection', (socket: WebSocket, rq) => {
-        console.log("New connection - Coming from " + rq.socket.remoteAddress);
+        GetLocation(rq.socket.remoteAddress).then((data: IReturnData) => {
+            console.log("New Connection from:  " + data.country);
+        });
 
         socket.on('close', function() {
             console.log("Removing socket from map");

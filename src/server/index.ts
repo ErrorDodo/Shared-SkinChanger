@@ -4,6 +4,6 @@ import { GetLocation, IReturnData } from "./server_location.js";
 StartWebServer();
 console.log("Server started on port 8080");
 // Get country from ip
-GetLocation().then((data: IReturnData) => {
+GetLocation(undefined).then((data: IReturnData) => {
     console.log("Server is currently located in " + data.country);
 });
