@@ -52,9 +52,10 @@ const ajv = new Ajv({ allErrors: true });
 const weapon_validation = ajv.compile(weapon_schema);
 
 export function StartWebServer() {
-    console.log("Webserver starting...\nRunning on port 8080");
     const ws = new WebSocketServer({ port: 8080 });
-    ws.on('connection', (socket: WebSocket) => {
+    ws.on('connection', (socket: WebSocket, rq) => {
+        console.log("New connection - Coming from " + rq.socket.remoteAddress);
+
         socket.on('close', function() {
             console.log("Removing socket from map");
             socket_map.delete(socket);
@@ -87,7 +88,6 @@ export function StartWebServer() {
                         if(client.readyState === WebSocket.OPEN) {
                             jsondata.shareids.forEach(function(id: any) {
                                 if(socket_map.has(client) && socket_map.get(client).steamid == id) {
-                                    console.log('socket steamid: ' + socket_map.get(client).steamid);
                                     client.send(jsondata_str);
                                 }
                             })
