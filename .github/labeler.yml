@@ -1,3 +1,5 @@
 Feature: ["feature/*", "feat/*"]
 Bugfix: ["fix/*", "bugfix/*"]
 Server: ["server/*", "Server/*"]
+Testing: ["testing/*", "test/*"]
+documentation: ["documentation/*", "docs/*"]
