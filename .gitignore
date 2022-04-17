@@ -1,0 +1,18 @@
+# Distribution
+dist
+out
+build
+node_modules
+
+# Logs
+*.log*
+logs
+
+# Environment
+*.env*
+
+# Test Data
+.test-data
+
+# Misc
+.DS_Store

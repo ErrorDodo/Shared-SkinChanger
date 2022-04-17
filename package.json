@@ -1,0 +1,15 @@
+{
+  "name": "Shared-SkinChanger",
+  "version": "1.5.0",
+  "description": "A lua that shares skins with everyone using gamesense.pub",
+  "main": "index.js",
+  "repository": "https://github.com/ErrorDodo/Shared-SkinChanger.git",
+  "author": "ErrorDodo, Midnight",
+  "license": "MIT",
+  "Scripts": {
+    "index.js": "tsc --build"
+  },
+  "devDependencies": {
+    "typescript": "^4.6.3"
+  }
+}
