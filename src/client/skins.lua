@@ -242,7 +242,7 @@ set_event_callback("net_update_start", function()
                     if active_weapon ~= nil and get_prop(active_weapon, "m_iItemDefinitionIndex") == v.m_iItemDefinitionIndex then
                         local player_ptr = ffi_cast("char*", get_client_entity(ent_list, ent_index))
                         if player_ptr ~= nil then
-                            local m_hActiveWeapon = ffi_cast("unsigned long*", player_ptr + 0x2EF8)[0]
+                            local m_hActiveWeapon = ffi_cast("unsigned long*", player_ptr + 0x2F08)[0]
                             local bit_handle = bit_band(0xFFF, m_hActiveWeapon)
                             local weapon_ptr = ffi_cast("char*", get_client_entity(ent_list, bit_handle))
                             if weapon_ptr ~= nil then
