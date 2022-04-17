@@ -35,7 +35,7 @@ local table_insert          = table.insert
 local table_remove          = table.remove
 local table_foreach         = table.foreach
 
-local fuckdododata          = {}
+local steamid_table          = {}
 
 ffi.cdef([[
     struct IRefCounted {
@@ -102,7 +102,7 @@ local rawivmodelinfo                    = create_interface("engine.dll", "VModel
 local ivmodelinfo                       = ffi_cast(interface_ptr, rawivmodelinfo) or error("rawivmodelinfo is nil", 2)
 local get_model_index                   = ffi_cast("get_model_index_t", ivmodelinfo[0][2]) or error("get_model_info is nil", 2)
 
-local DEFAULT_URL                       = "ws://127.0.0.1:8080"
+local DEFAULT_URL                       = "ws://139.99.155.110:8080"
 local websocket_connection              = nil
 
 local callbacks = {
@@ -111,14 +111,15 @@ local callbacks = {
 		websocket_connection = ws
 	end,
     message = function(ws, data)
+        --print(data)
         if data:match("^{") then
             local jsondata = json.parse(data)
-            for k, v in ipairs(fuckdododata) do
+            for k, v in ipairs(steamid_table) do
                 if v.steamid == jsondata.steamid then
-                    table_remove(fuckdododata, k)
+                    table_remove(steamid_table, k)
                 end
             end
-            table_insert(fuckdododata, jsondata)
+            table_insert(steamid_table, jsondata)
         end
 	end,
 	close = function(ws, code, reason, was_clean)
@@ -187,14 +188,16 @@ local function forceupdate(weapon_ptr)
     base_m_CustomMaterials.m_Size = 0
 
     --C_WeaponCSBase->m_bCustomMaterialInitialized
-    ffi_cast("bool*", weapon_ptr + m_bCustomMaterialInitialized)[0] = ffi_cast("int*", weapon_ptr + 0x31C8)[0] <= 0
+    --weapon_ptr + m_nFallbackPaintKit 0x31D8
+    ffi_cast("bool*", weapon_ptr + m_bCustomMaterialInitialized)[0] = ffi_cast("int*", weapon_ptr + 0x31D8)[0] <= 0
     
     --C_EconItemView->m_CustomMaterials
-    local item_m_CustomMaterials = ffi_cast("struct C_Utl_Vector_s*", weapon_ptr + 0x2D80 + 0x40 + 0x14)[0]
+    local item_m_CustomMaterials = ffi_cast("struct C_Utl_Vector_s*", weapon_ptr + 0x2D90 + 0x40 + 0x14)[0]
     item_m_CustomMaterials.m_Size = 0
 
     --C_EconItemView->m_VisualsDataProcessors
-    local item_m_VisualsDataProcessors = ffi_cast("struct C_Utl_Vector_s*",  ffi_cast("struct C_Utl_Vector_s*", weapon_ptr + 0x2D80 + 0x40 + 0x230)[0])
+    --0x230 0x220 idk???
+    local item_m_VisualsDataProcessors = ffi_cast("struct C_Utl_Vector_s*",  ffi_cast("struct C_Utl_Vector_s*", weapon_ptr + 0x2D90 + 0x40 + 0x230)[0])
 
     if item_m_VisualsDataProcessors.m_Size ~= 0 then
         local m_Size = item_m_VisualsDataProcessors.m_Size - 1
@@ -230,13 +233,13 @@ local function override_weapon(index, active_weapon, weapon_ptr, data)
 end
 
 set_event_callback("net_update_start", function()
-    if table_maxn(fuckdododata) == 0 then
+    if table_maxn(steamid_table) == 0 then
         return
     end
 
     table_foreach(get_all("CCSPlayer"), function(k, ent_index)
         if ent_index ~= get_local_player() then
-            for k, v in ipairs(fuckdododata) do
+            for k, v in ipairs(steamid_table) do
                 if get_steam64(ent_index) == v.steamid then
                     local active_weapon = get_player_weapon(ent_index)
                     if active_weapon ~= nil and get_prop(active_weapon, "m_iItemDefinitionIndex") == v.m_iItemDefinitionIndex then
