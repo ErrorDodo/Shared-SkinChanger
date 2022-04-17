@@ -8,12 +8,17 @@ export interface IReturnData{
     country_capital: string,
 }
 
-export async function GetServerLocation(){
-    const request = await (await fetch("https://ipwhois.app/json/", {method: "GET"})).json();
-    return request as IReturnData;
-}
 
-export async function GetClientLocation(ip: any){
-    const request = await (await fetch("https://ipwhois.app/json/", {method: "GET"})).json();
-    return request as IReturnData;
+export async function GetLocation(ip: any){
+    let uri = "";
+    if(ip === undefined) {
+        uri = "http://ip-api.com/json";
+        const request = await (await fetch(uri, {method: "GET"})).json();
+        return request as IReturnData;
+    }
+    else {
+        uri = `https://ipwhois.app/json/${ip}`;
+        const request = await (await fetch(uri, {method: "GET"})).json();
+        return request as IReturnData;
+    }
 }
