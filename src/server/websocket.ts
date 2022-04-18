@@ -1,3 +1,8 @@
+// Receive data from client and send to other clients connected to the same server.
+//
+// Language: typescript
+// Path: src\server\websocket.ts
+
 import WebSocket, { WebSocketServer } from 'ws'
 import Ajv from 'ajv';
 import { GetLocation, IReturnData } from './server_location.js';
