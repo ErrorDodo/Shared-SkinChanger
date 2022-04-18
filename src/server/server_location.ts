@@ -1,3 +1,8 @@
+// Figure out where the clients connection is coming from and send them to the closest server.
+//
+// Language: typescript
+// Path: src\server\server_location.ts
+
 import fetch from 'node-fetch';
 
 export interface IReturnData{
