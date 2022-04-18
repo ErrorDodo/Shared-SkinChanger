@@ -12,11 +12,9 @@ export interface IReturnData{
 export async function GetLocation(ip: any){
     let uri = "";
     if(ip === undefined) {
-        console.log("Getting Server Location...")
         uri = "http://ip-api.com/json";
     }
     else {
-        console.log("Getting Client Location...");
         uri = `http://ip-api.com/json/${ip}`;
     }
     const request = await (await fetch(uri, {method: "GET"})).json();
