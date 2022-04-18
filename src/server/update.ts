@@ -6,6 +6,7 @@
 import fetch from 'node-fetch';
 
 export default async function CheckUpdates(){
+    console.log("Checking for updates...");
     // Check if a new commit has been pushed to the repository.
     // Github repo is https://github.com/ErrorDodo/Shared-SkinChanger
     const request:any = await (await fetch("https://api.github.com/repos/ErrorDodo/Shared-SkinChanger/commits", {method: "GET"})).json();
